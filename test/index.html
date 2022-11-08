@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>
+
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .white,
+  .black {
+    flex: 1;
+  }
+
+  .white {
+    background-color: #fff;
+  }
+
+  .black {
+    background-color: #000;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    z-index: 3;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+
+  header {
+    display: flex;
+    position: fixed;
+    top: 3rem;
+    right: 4rem;
+    z-index: 2;
+  }
+
+  header li {
+    color: #fff;
+    padding: 0.5rem;
+    margin-left: 3rem;
+  }
+</style>
+
+<body>
+  <header>
+    <li data-hover>link</li>
+    <li data-hover>link</li>
+    <li data-hover>link</li>
+  </header>
+  <div class="white"></div>
+  <div class="black"></div>
+  <canvas class="js-canvas"></canvas>
+
+  <script>
+    const canvas = document.querySelector('.js-canvas')
+    const ctx = canvas.getContext('2d')
+
+    let width = canvas.width = window.innerWidth
+    let height = canvas.height = window.innerHeight
+
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+
+    let circle = {
+      radius: 110,
+      lastX: mouseX,
+      lastY: mouseY
+    }
+
+    const elems = [...document.querySelectorAll('[data-hover]')]
+
+    function onResize() {
+      width = canvas.width = window.innerWidth
+      height = canvas.height = window.innerHeight
+    }
+
+    function render() {
+      circle.lastX = lerp(circle.lastX, mouseX, 0.25)
+      circle.lastY = lerp(circle.lastY, mouseY, 0.25)
+
+      ctx.clearRect(0, 0, width, height)
+      ctx.beginPath()
+      ctx.arc(circle.lastX, circle.lastY, circle.radius, 0, Math.PI * 2, false)
+      ctx.fillStyle = "#ffffff"
+      ctx.fill()
+      ctx.closePath()
+
+      requestAnimationFrame(render)
+    }
+
+    function init() {
+      requestAnimationFrame(render)
+
+      window.addEventListener('mousemove', function (e) {
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+      })
+
+      window.addEventListener('resize', onResize, false)
+
+      let tween = TweenMax.to(circle, 0.25, {
+        radius: circle.radius * 3,
+        ease: Power1.easeInOut,
+        paused: true
+      })
+
+      elems.forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          tween.play()
+          console.log(el);
+        }, false)
+        el.addEventListener('mouseleave', () => {
+          tween.reverse()
+        }, false)
+      })
+    }
+
+    function lerp(a, b, n) {
+      return (1 - n) * a + n * b
+    }
+
+    init()
+  </script>
+</body>
+
+</html>
