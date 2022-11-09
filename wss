@@ -1,0 +1,19 @@
+//输入n，求a(n)
+#include <iostream>
+#include <cstdio>
+using namespace std;
+ 
+int fun(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    if (n >= 2)
+        return (fun(n-1) + fun(n-2));
+}
+ 
+int main()
+{
+    int n;
+    cin>>n;
+    printf("%d\n", fun(n));
+    return 0;
+}
