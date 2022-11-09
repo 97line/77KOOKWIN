@@ -1,24 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
-#include <time.h>
-#include <windows.h>
-#include<locale.h>
- 
-#define STRNAMELEN 12 //用户账号结构体长度
-#define STRPASSLEN 20 //用户密码结构体长度
-#define UARRLEN 3 //用户数组结构体初始内存大小
- 
-#define BARRLEN 5 //图书数组结构体初始内存大小
-#define BOOKNAME 30 //图书名字最大数
-#define BOOKAUTOR 30 //图书作者最大数
-#define BOOKPRESS 10 //图书出版社最大数
- 
-#define STRCHLEN 20 //pl结构体ch数组长度
-#define STRFHLEN 5  //pl结构体fh数组长度
-#define BLSTRLEN 13  //遍历结构体数组的下标
+
  
 // 用户结构体
 typedef struct username {
