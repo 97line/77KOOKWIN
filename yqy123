@@ -82,4 +82,4 @@ void adminLookup(userArr* p);
 //修改账号
 void adminModify(userArr* p);
 //管理登录页面
-void adS
+void adS   123哈哈哈哈哈哈哈哈哈
