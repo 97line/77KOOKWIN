@@ -1,0 +1,85 @@
+
+ 
+// 用户结构体
+typedef struct username {
+ int uid; //用户id
+ char uname[STRNAMELEN]; //用户名
+ char upass[STRNAMELEN]; //用户密码
+ int usign; //用户标记 0代表普通用户  1代表管理员
+}user;
+ 
+//用户结构体数组
+typedef struct userArray {
+ user* uArr; //用户结构体数组
+ int uSub; //用户结构体数组当前下标
+ int uMaxLen;  //用户结构体数组当前最大容量
+}userArr;
+ 
+//图书结构体
+typedef struct books {
+ int id; //图书编号
+ char title[BOOKNAME]; //图书名字
+ char autor[BOOKAUTOR]; //图书作者
+ char press[BOOKPRESS]; //出版社
+ int much; //数量
+}book;
+ 
+//图书结构体数组
+typedef struct booksArray {
+ book* bArr; //图书结构体指针
+ int bSub; //图书结构体数组当前下标
+ int bMaxLen; //图书结构体数组当前最大容量
+}bookArr;
+ 
+//借阅信息结构体
+typedef struct bookRecord {
+ char reName[STRNAMELEN]; //借阅人姓名
+ char reBook[BOOKNAME]; //书籍
+ char re[5]; //是否归还
+}record;
+ 
+typedef struct strRecord {
+ record* reArr;
+ int reSub;
+ int reMaxLen;
+}reStr;
+ 
+//遍历结构体
+typedef struct pl {
+ char ch[STRCHLEN];
+ char fh[STRFHLEN];
+}pl;
+ 
+typedef struct plArr {
+ pl o[BLSTRLEN]; //遍历结构体数组
+ int i;  //全局变量-下标
+}pArr;
+ 
+//管理员选择函数
+void adminChoice(userArr* p, pArr* po, bookArr* pb);
+//删除图书
+void delBook(bookArr* p);
+//导出图书
+void expBook(bookArr* p);
+//遍历图书
+void ergBook(bookArr* p);
+//查找图书
+void lookupBook(bookArr* p);
+//修改图书
+void modifyBook(bookArr* p);
+//添加图书
+void regBook(bookArr* p);
+//写入图书
+void writeBook(bookArr* p);
+//删除账号
+void adminDel(userArr* p);
+//导出账号
+void adminExp(userArr* p);
+//遍历用户
+void adminErg(userArr* p);
+//查找账号
+void adminLookup(userArr* p);
+//修改账号
+void adminModify(userArr* p);
+//管理登录页面
+void adS
