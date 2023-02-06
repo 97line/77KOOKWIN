@@ -1,4 +1,4 @@
-//输入n，求a(n)
+//输入n，求a(n)123
 #include <iostream>
 #include <cstdio>
 using namespace std;
