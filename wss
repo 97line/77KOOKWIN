@@ -17,3 +17,4 @@ int main()
     printf("%d\n", fun(n));
     return 0;
 }
+123
